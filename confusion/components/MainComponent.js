@@ -26,7 +26,7 @@ const MenuNavigator = createStackNavigator({
 const HomeNavigator = createStackNavigator({
     Home: { screen: Home }
 }, {
-        navigationOptions: ({ navigation }) => ({
+        navigationOptions: {
             headerStyle: {
                 backgroundColor: "#512DA8"
             },
@@ -34,7 +34,7 @@ const HomeNavigator = createStackNavigator({
                 color: "#fff"
             },
             headerTintColor: "#fff"
-        })
+        }
     });
 
 const MainNavigator = createDrawerNavigator({
