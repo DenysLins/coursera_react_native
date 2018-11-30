@@ -80,9 +80,10 @@ class Dishdetail extends Component {
         return (
             <ScrollView>
                 <RenderDish dish={this.props.dishes.dishes[+dishId]}
-                    favorites={this.state.favorites.some(el => el === dishId)}
-                    onPress={() => this.markFavorite(dishId)} />
-                <RenderComments comments={this.props.comments.comments.filter(comment => comment.id === dishId)} />
+                    favorite={this.state.favorites.some(el => el === dishId)}
+                    onPress={() => this.markFavorite(dishId)}
+                />
+                <RenderComments comments={this.props.comments.comments.filter((comment) => comment.dishId === dishId)} />
             </ScrollView>
         );
     }
