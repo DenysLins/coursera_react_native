@@ -121,7 +121,7 @@ const ReservationNavigator = createStackNavigator({
                 iconStyle={{ color: 'white' }}
                 onPress={() => navigation.navigate('DrawerToggle')} />
         })
-    })
+    });
 
 const CustomDrawerContentComponent = (props) => (
     <ScrollView>
