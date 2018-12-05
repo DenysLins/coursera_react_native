@@ -17,7 +17,6 @@ class Menu extends Component {
         title: "Menu"
     }
 
-
     render() {
 
         const renderMenuItem = ({ item, index }) => {
@@ -35,7 +34,6 @@ class Menu extends Component {
         };
 
         const { navigate } = this.props.navigation;
-
 
         if (this.props.dishes.isLoading) {
             return (
