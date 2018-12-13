@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text, ScrollView, Image } from 'react-native';
 import { Input, CheckBox, Button, Icon } from 'react-native-elements';
-import { SecureStore, Permissions, ImagePicker } from 'expo';
-import { createBottomTabNavigator } from 'react-navigation';
+import { SecureStore, Camera, Permissions, ImagePicker, Asset, ImageManipulator } from 'expo'; import { createBottomTabNavigator } from 'react-navigation';
 import { baseUrl } from '../shared/baseUrl';
 
 class LoginTab extends Component {
@@ -143,9 +142,22 @@ class RegisterTab extends Component {
             });
             if (!capturedImage.cancelled) {
                 console.log(capturedImage);
-                this.setState({ imageUrl: capturedImage.uri });
+                this.processImage(capturedImage.uri);
             }
         }
+
+    }
+
+    processImage = async (imageUri) => {
+        let processedImage = await ImageManipulator.manipulate(
+            imageUri,
+            [
+                { resize: { width: 400 } }
+            ],
+            { format: 'png' }
+        );
+        console.log(processedImage);
+        this.setState({ imageUrl: processedImage.uri });
 
     }
 
@@ -200,7 +212,7 @@ class RegisterTab extends Component {
                     <Input
                         placeholder="First Name"
                         leftIcon={{ type: 'font-awesome', name: 'user-o' }}
-                        onChangeText={(lastname) => this.setState({ firstname })}
+                        onChangeText={(firstname) => this.setState({ firstname })}
                         value={this.state.firstname}
                         containerStyle={styles.formInput}
                     />
